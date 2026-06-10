@@ -1,0 +1,546 @@
+[
+  {
+    "episode_number": 1,
+    "title": "I rebuilt Google's PageRank with 5 websites",
+    "content_pillar": "A",
+    "target_audience": "student",
+    "paper": {
+      "title": "The PageRank Citation Ranking: Bringing Order to the Web",
+      "authors": ["Larry Page", "Sergey Brin"],
+      "year": 1998,
+      "citation_status": "verified",
+      "source_url": "http://ilpubs.stanford.edu:8090/422/1/1999-66.pdf",
+      "core_idea": "Web pages are votes; important pages are linked by important pages",
+      "rebuild_type": "network_graph",
+      "difficulty_level": "beginner"
+    },
+    "viral_hook": "Google was basically built on one clever popularity contest.",
+    "why_cool": "Shows how a simple link graph idea became a trillion-dollar insight",
+    "demo_slug": "pagerank",
+    "rebuildability_score": 9
+  },
+  {
+    "episode_number": 2,
+    "title": "I rebuilt Netflix recommendations using only a table",
+    "content_pillar": "A",
+    "target_audience": "student",
+    "paper": {
+      "title": "Item-based Collaborative Filtering Recommendation Algorithms",
+      "authors": ["Sarwar", "Karypis", "Konstan", "Riedl"],
+      "year": 2001,
+      "citation_status": "verified",
+      "core_idea": "People who liked X also liked Y — find similar taste patterns",
+      "rebuild_type": "recommender",
+      "difficulty_level": "beginner"
+    },
+    "viral_hook": "Netflix doesn't know your taste. It knows your neighbors.",
+    "why_cool": "Collaborative filtering is just a spreadsheet with opinions",
+    "demo_slug": "recommender",
+    "rebuildability_score": 9
+  },
+  {
+    "episode_number": 3,
+    "title": "I rebuilt a football match predictor before the World Cup",
+    "content_pillar": "A",
+    "target_audience": "student",
+    "paper": {
+      "title": "A Bayesian Dynamic Generalized Linear Model (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Past performance + team strength predicts match outcomes probabilistically",
+      "rebuild_type": "toy_model",
+      "difficulty_level": "intermediate"
+    },
+    "viral_hook": "Before kickoff, the model already had a favorite.",
+    "why_cool": "Sports prediction is applied probability students already care about",
+    "rebuildability_score": 8
+  },
+  {
+    "episode_number": 4,
+    "title": "I rebuilt a fake-news detector with 10 headlines",
+    "content_pillar": "A",
+    "target_audience": "parent",
+    "paper": {
+      "title": "Automatic Detection of Fake News (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Language patterns and source signals flag suspicious headlines",
+      "rebuild_type": "classifier",
+      "difficulty_level": "beginner"
+    },
+    "viral_hook": "10 headlines. One simple model. Surprisingly accurate.",
+    "why_cool": "Media literacy meets hands-on AI",
+    "rebuildability_score": 8
+  },
+  {
+    "episode_number": 5,
+    "title": "I rebuilt an AI that guesses your personality from writing",
+    "content_pillar": "D",
+    "target_audience": "student",
+    "paper": {
+      "title": "Personality Recognition on Social Media (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Word choice and style correlate with personality traits",
+      "rebuild_type": "classifier",
+      "difficulty_level": "intermediate"
+    },
+    "viral_hook": "Your word choices are louder than you think.",
+    "why_cool": "Students love self-discovery + NLP",
+    "rebuildability_score": 7
+  },
+  {
+    "episode_number": 6,
+    "title": "I rebuilt how Spotify recommends songs",
+    "content_pillar": "A",
+    "target_audience": "student",
+    "paper": {
+      "title": "Matrix Factorization Techniques for Recommender Systems (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Hidden taste vectors match users to songs they'd love",
+      "rebuild_type": "recommender",
+      "difficulty_level": "intermediate"
+    },
+    "viral_hook": "Spotify's Discover Weekly is just math on your listening history.",
+    "why_cool": "Music + math = instant engagement",
+    "rebuildability_score": 8
+  },
+  {
+    "episode_number": 7,
+    "title": "I rebuilt how Uber/Rapido matches drivers and riders",
+    "content_pillar": "A",
+    "target_audience": "student",
+    "paper": {
+      "title": "Optimal Matching in Ride-Sharing (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Minimize wait time by matching nearest available pairs",
+      "rebuild_type": "simulation",
+      "difficulty_level": "intermediate"
+    },
+    "viral_hook": "Every Uber match is a tiny optimization problem.",
+    "why_cool": "Real-world algorithms students use daily",
+    "rebuildability_score": 7
+  },
+  {
+    "episode_number": 8,
+    "title": "I rebuilt a stock-market sentiment model",
+    "content_pillar": "A",
+    "target_audience": "founder",
+    "paper": {
+      "title": "Twitter mood predicts the stock market (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Aggregate social sentiment correlates with market movement",
+      "rebuild_type": "toy_model",
+      "difficulty_level": "intermediate"
+    },
+    "viral_hook": "Can tweets move markets? Let's test it with 50 headlines.",
+    "why_cool": "Finance + NLP crossover",
+    "rebuildability_score": 7
+  },
+  {
+    "episode_number": 9,
+    "title": "I rebuilt an AI that predicts student dropout",
+    "content_pillar": "F",
+    "target_audience": "parent",
+    "paper": {
+      "title": "Predicting Student Dropout (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Attendance, homework, sleep patterns signal dropout risk early",
+      "rebuild_type": "calculator",
+      "difficulty_level": "beginner"
+    },
+    "viral_hook": "Three numbers can predict if a student is about to disengage.",
+    "why_cool": "Parents care deeply; model is transparent and actionable",
+    "rebuildability_score": 9
+  },
+  {
+    "episode_number": 10,
+    "title": "I rebuilt a paper that explains why habits fail",
+    "content_pillar": "A",
+    "target_audience": "student",
+    "paper": {
+      "title": "The Psychology of Habit Formation (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Cue-routine-reward loops break when cues change",
+      "rebuild_type": "simulation",
+      "difficulty_level": "beginner"
+    },
+    "viral_hook": "Your habit didn't fail. Your cue disappeared.",
+    "why_cool": "Behavioral science made interactive",
+    "rebuildability_score": 8
+  },
+  {
+    "episode_number": 11,
+    "title": "I rebuilt the math behind viral videos",
+    "content_pillar": "A",
+    "target_audience": "student",
+    "paper": {
+      "title": "Structural Virality of Online Diffusion (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Virality depends on network structure, not just content quality",
+      "rebuild_type": "network_graph",
+      "difficulty_level": "intermediate"
+    },
+    "viral_hook": "Going viral isn't luck — it's network geometry.",
+    "why_cool": "Meta topic for Instagram creators",
+    "rebuildability_score": 8
+  },
+  {
+    "episode_number": 12,
+    "title": "I rebuilt AlphaGo, but using tic-tac-toe",
+    "content_pillar": "A",
+    "target_audience": "student",
+    "paper": {
+      "title": "Mastering the game of Go with deep neural networks and tree search",
+      "authors": ["Silver et al."],
+      "year": 2016,
+      "citation_status": "verified",
+      "core_idea": "Search + evaluation lets AI plan moves ahead",
+      "rebuild_type": "game",
+      "difficulty_level": "intermediate"
+    },
+    "viral_hook": "AlphaGo's secret isn't magic. It's looking ahead.",
+    "why_cool": "Legendary AI moment, simplified to tic-tac-toe",
+    "rebuildability_score": 8
+  },
+  {
+    "episode_number": 13,
+    "title": "I rebuilt an AI debate judge",
+    "content_pillar": "D",
+    "target_audience": "school",
+    "paper": {
+      "title": "Automated Argument Quality Assessment (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Score arguments by evidence, logic, and rebuttal strength",
+      "rebuild_type": "classifier",
+      "difficulty_level": "intermediate"
+    },
+    "viral_hook": "Who won the debate? Let's ask a simple rubric.",
+    "why_cool": "Debate clubs + critical thinking",
+    "rebuildability_score": 7
+  },
+  {
+    "episode_number": 14,
+    "title": "I rebuilt a climate-risk model for Mumbai",
+    "content_pillar": "A",
+    "target_audience": "parent",
+    "paper": {
+      "title": "Climate Risk Assessment for Coastal Cities (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Rainfall + temperature + elevation predict flood risk scores",
+      "rebuild_type": "calculator",
+      "difficulty_level": "beginner"
+    },
+    "viral_hook": "What happens to Mumbai if rainfall rises 20%?",
+    "why_cool": "Local relevance + climate education",
+    "rebuildability_score": 8
+  },
+  {
+    "episode_number": 15,
+    "title": "I rebuilt a model that predicts house prices",
+    "content_pillar": "A",
+    "target_audience": "parent",
+    "paper": {
+      "title": "Hedonic Housing Prices and the Demand for Clean Air",
+      "authors": ["Harrison", "Rubinfeld"],
+      "year": 1978,
+      "citation_status": "verified",
+      "core_idea": "Location features predict price via regression",
+      "rebuild_type": "calculator",
+      "difficulty_level": "beginner"
+    },
+    "viral_hook": "A house price is just weighted features in disguise.",
+    "why_cool": "Regression students can touch",
+    "rebuildability_score": 9
+  },
+  {
+    "episode_number": 16,
+    "title": "I rebuilt a paper on why sleep affects learning",
+    "content_pillar": "F",
+    "target_audience": "parent",
+    "paper": {
+      "title": "Sleep-dependent memory consolidation (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Sleep hours correlate with memory retention rates",
+      "rebuild_type": "simulation",
+      "difficulty_level": "beginner"
+    },
+    "viral_hook": "Pulling an all-nighter literally deletes what you studied.",
+    "why_cool": "Parents and students both care",
+    "rebuildability_score": 8
+  },
+  {
+    "episode_number": 17,
+    "title": "I rebuilt a model that detects sarcasm",
+    "content_pillar": "D",
+    "target_audience": "student",
+    "paper": {
+      "title": "Sarcasm Detection on Social Media (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Contrast between positive words and negative context signals sarcasm",
+      "rebuild_type": "classifier",
+      "difficulty_level": "intermediate"
+    },
+    "viral_hook": "Yeah, AI totally gets sarcasm. (It doesn't. Let's fix that.)",
+    "why_cool": "Fun NLP challenge",
+    "rebuildability_score": 7
+  },
+  {
+    "episode_number": 18,
+    "title": "I rebuilt a paper on how misinformation spreads",
+    "content_pillar": "A",
+    "target_audience": "parent",
+    "paper": {
+      "title": "The Spread of True and False News Online (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "False news spreads faster due to novelty and network structure",
+      "rebuild_type": "simulation",
+      "difficulty_level": "beginner"
+    },
+    "viral_hook": "Lies travel faster because our brains love surprises.",
+    "why_cool": "Critical media literacy made visual",
+    "demo_slug": "misinformation-spread",
+    "rebuildability_score": 9
+  },
+  {
+    "episode_number": 19,
+    "title": "I rebuilt a model that predicts if a startup will survive",
+    "content_pillar": "E",
+    "target_audience": "founder",
+    "paper": {
+      "title": "Startup Success Prediction (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Runway, growth rate, and retention signal survival probability",
+      "rebuild_type": "calculator",
+      "difficulty_level": "intermediate"
+    },
+    "viral_hook": "Three metrics tell you if a startup is dying quietly.",
+    "why_cool": "Founder audience + transparent heuristics",
+    "rebuildability_score": 7
+  },
+  {
+    "episode_number": 20,
+    "title": "I rebuilt an AI that ranks college applications",
+    "content_pillar": "F",
+    "target_audience": "parent",
+    "paper": {
+      "title": "Holistic Admissions Scoring (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Weighted multi-factor scoring ranks applicant profiles",
+      "rebuild_type": "calculator",
+      "difficulty_level": "intermediate"
+    },
+    "viral_hook": "College admissions is a scoring function. Let's open the hood.",
+    "why_cool": "High-stakes topic parents obsess over",
+    "rebuildability_score": 7
+  },
+  {
+    "episode_number": 21,
+    "title": "I rebuilt a chess engine's basic thinking",
+    "content_pillar": "A",
+    "target_audience": "student",
+    "paper": {
+      "title": "Computer Chess Search Algorithms (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Minimax search evaluates future board positions",
+      "rebuild_type": "game",
+      "difficulty_level": "intermediate"
+    },
+    "viral_hook": "A chess engine doesn't think. It searches.",
+    "why_cool": "Classic CS + gaming appeal",
+    "rebuildability_score": 8
+  },
+  {
+    "episode_number": 22,
+    "title": "I rebuilt a paper on attention spans",
+    "content_pillar": "B",
+    "target_audience": "parent",
+    "paper": {
+      "title": "Digital Media and Attention Fragmentation (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Interruption frequency degrades focus and retention",
+      "rebuild_type": "simulation",
+      "difficulty_level": "beginner"
+    },
+    "viral_hook": "Your phone isn't distracting you. It's fragmenting your attention.",
+    "why_cool": "Timely parent concern",
+    "rebuildability_score": 8
+  },
+  {
+    "episode_number": 23,
+    "title": "I rebuilt a model that predicts exam performance",
+    "content_pillar": "F",
+    "target_audience": "student",
+    "paper": {
+      "title": "Predicting Academic Performance (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Study hours, practice tests, and sleep predict exam scores",
+      "rebuild_type": "calculator",
+      "difficulty_level": "beginner"
+    },
+    "viral_hook": "Your exam score is predictable weeks before the test.",
+    "why_cool": "Actionable for students",
+    "rebuildability_score": 9
+  },
+  {
+    "episode_number": 24,
+    "title": "I rebuilt a paper on social networks and influence",
+    "content_pillar": "A",
+    "target_audience": "student",
+    "paper": {
+      "title": "Identifying Influential Spreaders in Complex Networks",
+      "authors": ["Kitsak et al."],
+      "year": 2010,
+      "citation_status": "verified",
+      "core_idea": "Influence depends on network position, not just follower count",
+      "rebuild_type": "network_graph",
+      "difficulty_level": "intermediate"
+    },
+    "viral_hook": "The most influential person isn't the one with the most followers.",
+    "why_cool": "Social media intuition challenge",
+    "rebuildability_score": 8
+  },
+  {
+    "episode_number": 25,
+    "title": "I rebuilt a simple disease-spread simulation",
+    "content_pillar": "A",
+    "target_audience": "student",
+    "paper": {
+      "title": "A Contribution to the Mathematical Theory of Epidemics",
+      "authors": ["Kermack", "McKendrick"],
+      "year": 1927,
+      "citation_status": "verified",
+      "core_idea": "SIR model: susceptible, infected, recovered populations over time",
+      "rebuild_type": "simulation",
+      "difficulty_level": "beginner"
+    },
+    "viral_hook": "Epidemics follow equations. Here's the simplest one.",
+    "why_cool": "Timely, visual, mathematically elegant",
+    "rebuildability_score": 9
+  },
+  {
+    "episode_number": 26,
+    "title": "I rebuilt a recommendation system for books",
+    "content_pillar": "G",
+    "target_audience": "student",
+    "paper": {
+      "title": "Book Recommendation via Collaborative Filtering (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Readers with similar ratings get similar book suggestions",
+      "rebuild_type": "recommender",
+      "difficulty_level": "beginner"
+    },
+    "viral_hook": "Your next favorite book is hiding in someone else's ratings.",
+    "why_cool": "Reading + recommendations",
+    "rebuildability_score": 9
+  },
+  {
+    "episode_number": 27,
+    "title": "I rebuilt an AI that classifies music moods",
+    "content_pillar": "D",
+    "target_audience": "student",
+    "paper": {
+      "title": "Music Mood Classification (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Tempo, energy, and valence features predict mood labels",
+      "rebuild_type": "classifier",
+      "difficulty_level": "intermediate"
+    },
+    "viral_hook": "Happy or sad? A song's mood is just 3 numbers.",
+    "why_cool": "Music + feature engineering",
+    "rebuildability_score": 8
+  },
+  {
+    "episode_number": 28,
+    "title": "I rebuilt a paper on memory and learning",
+    "content_pillar": "A",
+    "target_audience": "student",
+    "paper": {
+      "title": "Distributed Practice in Verbal Recall Tasks",
+      "authors": ["Bahrick"],
+      "year": 1979,
+      "citation_status": "verified",
+      "core_idea": "Spaced repetition beats cramming for long-term retention",
+      "rebuild_type": "simulation",
+      "difficulty_level": "beginner"
+    },
+    "viral_hook": "Cramming feels productive. Spaced practice actually works.",
+    "why_cool": "Evidence-based study hacks",
+    "rebuildability_score": 9
+  },
+  {
+    "episode_number": 29,
+    "title": "I rebuilt a YouTube thumbnail prediction model",
+    "content_pillar": "A",
+    "target_audience": "student",
+    "paper": {
+      "title": "Click-Through Rate Prediction for Video Thumbnails (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Color contrast, faces, and text size predict click rates",
+      "rebuild_type": "classifier",
+      "difficulty_level": "beginner"
+    },
+    "viral_hook": "Your thumbnail isn't art. It's a click equation.",
+    "why_cool": "Creator economy relevance",
+    "rebuildability_score": 7
+  },
+  {
+    "episode_number": 30,
+    "title": "I rebuilt a research paper using only ChatGPT and Google Sheets",
+    "content_pillar": "H",
+    "target_audience": "founder",
+    "paper": {
+      "title": "Meta: Rebuilding Research with Accessible Tools (research-inspired)",
+      "authors": [],
+      "year": null,
+      "citation_status": "research_inspired",
+      "core_idea": "Modern tools let students replicate research intuition without PhD-level infra",
+      "rebuild_type": "dashboard",
+      "difficulty_level": "beginner"
+    },
+    "viral_hook": "You don't need a lab. You need curiosity and a spreadsheet.",
+    "why_cool": "Meta episode showcasing the series philosophy",
+    "rebuildability_score": 10
+  }
+]

@@ -1,26 +1,138 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf9f7;
+  --foreground: #1a1625;
+  --card: #ffffff;
+  --card-foreground: #1a1625;
+  --popover: #ffffff;
+  --popover-foreground: #1a1625;
+  --primary: #4f46e5;
+  --primary-foreground: #ffffff;
+  --secondary: #ede9fe;
+  --secondary-foreground: #3730a3;
+  --muted: #f3f0ff;
+  --muted-foreground: #6b7280;
+  --accent: #7c3aed;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #e5e2ed;
+  --input: #e5e2ed;
+  --ring: #4f46e5;
+  --sidebar: #1a1625;
+  --sidebar-foreground: #f3f0ff;
+  --sidebar-muted: #2d2640;
+  --sidebar-accent: #4f46e5;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-muted: var(--sidebar-muted);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --font-sans: var(--font-dm-sans);
+  --font-display: var(--font-fraunces);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+/* ---- Viral Lab dark glassmorphism theme (scoped to /viral) ---- */
+
+.viral-theme {
+  --background: #0a0812;
+  --foreground: #ece9f7;
+  --card: rgba(255, 255, 255, 0.04);
+  --card-foreground: #ece9f7;
+  --popover: #161126;
+  --popover-foreground: #ece9f7;
+  --primary: #8b5cf6;
+  --primary-foreground: #ffffff;
+  --secondary: rgba(139, 92, 246, 0.15);
+  --secondary-foreground: #c4b5fd;
+  --muted: rgba(255, 255, 255, 0.06);
+  --muted-foreground: #9b94b8;
+  --accent: #22d3ee;
+  --accent-foreground: #0a0812;
+  --destructive: #f87171;
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #8b5cf6;
+
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.viral-bg {
+  position: relative;
+}
+
+.viral-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 0%, rgba(139, 92, 246, 0.14), transparent 60%),
+    radial-gradient(ellipse 50% 35% at 85% 15%, rgba(34, 211, 238, 0.08), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(99, 102, 241, 0.1), transparent 65%);
+  z-index: 0;
+}
+
+.viral-bg > * {
+  position: relative;
+  z-index: 1;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.viral-theme ::selection {
+  background: rgba(139, 92, 246, 0.4);
+}
+
+.viral-theme input[type="text"],
+.viral-theme textarea,
+.viral-theme select {
+  color-scheme: dark;
+}
+
+.score-bar {
+  height: 6px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #8b5cf6, #22d3ee);
 }
