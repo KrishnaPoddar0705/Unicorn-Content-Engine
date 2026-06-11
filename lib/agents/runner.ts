@@ -179,7 +179,7 @@ export async function runAgentText(params: {
 
     if (runId && isSupabaseConfigured()) {
       const output: Record<string, unknown> = { content_length: result.content.length };
-      if (params.agentName === "interactive_webpage") {
+      if (params.agentName === "interactive_webpage" || params.agentName === "viral_interactive_webpage") {
         output.html_raw = result.content;
       }
       await getSupabase()

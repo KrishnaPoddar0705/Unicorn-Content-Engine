@@ -16,6 +16,7 @@ const STAGE_LABELS: Record<string, string> = {
   visual_director: "Visual Director",
   engagement_engineer: "Engagement Engineer",
   virality_critic: "Virality Critic",
+  interactive_webpage: "Interactive Webpage",
 };
 
 export interface StageState {

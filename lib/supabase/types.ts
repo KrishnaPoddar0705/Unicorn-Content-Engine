@@ -130,6 +130,8 @@ export interface InteractiveWebpage {
   id: string;
   episode_id: string | null;
   paper_id: string | null;
+  viral_episode_id?: string | null;
+  blog_slug?: string | null;
   slug: string;
   title: string;
   theme: string | null;
@@ -247,7 +249,8 @@ export type ViralStage =
   | "visual_director"
   | "engagement_engineer"
   | "virality_critic"
-  | "project_bridge";
+  | "project_bridge"
+  | "interactive_webpage";
 export type ViralStageStatus = "pending" | "running" | "success" | "failed";
 export type ViralEpisodeStatus = "queued" | "running" | "failed" | "complete";
 export type VisualStyleMode = "default" | "reference_image" | "pasted_prompt";

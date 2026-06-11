@@ -10,6 +10,7 @@ import { VisualPromptsPanel } from "./visual-prompts-panel";
 import { CarouselPanel } from "./carousel-panel";
 import { CaptionsPanel } from "./captions-panel";
 import { ProjectBridgePanel } from "./project-bridge-panel";
+import { WebpagePanel } from "./webpage-panel";
 import { ScoresPanel } from "./scores-panel";
 import { RevisionHistoryPanel } from "./revision-history-panel";
 import { PerformanceForm } from "./performance-form";
@@ -26,6 +27,7 @@ const TABS = [
   ["carousel", "Carousel"],
   ["captions", "Captions"],
   ["project", "Project Bridge"],
+  ["webpage", "Webpage"],
   ["scores", "Scores"],
   ["revisions", "Revisions"],
   ["performance", "Performance"],
@@ -81,6 +83,9 @@ export function CockpitTabs({
       </TabsContent>
       <TabsContent value="project">
         <ProjectBridgePanel output={outputs.project_bridge} />
+      </TabsContent>
+      <TabsContent value="webpage">
+        <WebpagePanel output={outputs.interactive_webpage} />
       </TabsContent>
       <TabsContent value="scores">
         <ScoresPanel output={outputs.virality_critic} />

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSupabase, isSupabaseConfigured } from "@/lib/supabase/server";
+import { injectLeadForm } from "@/lib/viral/enhance-webpage";
 
 export async function GET(
   _request: Request,
@@ -22,7 +23,9 @@ export async function GET(
     return new NextResponse("Webapp not found", { status: 404 });
   }
 
-  return new NextResponse(data.html_content, {
+  const html = injectLeadForm(data.html_content, slug);
+
+  return new NextResponse(html, {
     headers: {
       "Content-Type": "text/html; charset=utf-8",
       "Cache-Control": "public, max-age=3600",

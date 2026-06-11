@@ -144,6 +144,17 @@ export async function advanceViralPipeline(episodeId: string): Promise<ViralPipe
   const supabase = getSupabase();
   const episode = await fetchEpisode(episodeId);
   let rows = await fetchOutputs(episodeId);
+
+  // Backfill stages added after this episode was created (e.g. interactive_webpage).
+  const missing = STAGE_ORDER.filter((stage) => !rows.some((r) => r.stage === stage));
+  if (missing.length > 0) {
+    const { error } = await supabase.from("viral_episode_outputs").insert(
+      missing.map((stage) => ({ viral_episode_id: episodeId, stage, status: "pending" }))
+    );
+    // Insert fails if the DB enum predates the new stage (migration not applied) — skip silently.
+    if (!error) rows = await fetchOutputs(episodeId);
+  }
+
   rows = await failStaleRunning(rows);
 
   const runnable = runnableStages(rows);
@@ -286,6 +297,12 @@ export async function reviseViralStage(params: {
     throw new Error(`Stage ${stage} has no successful output to revise`);
   }
 
+  if (!(stage in VIRAL_SCHEMAS)) {
+    throw new Error(
+      `The ${stage} stage cannot be revised in place — retry it from the pipeline rail to regenerate.`
+    );
+  }
+
   const action = actionKey === "custom" ? undefined : getRevisionAction(actionKey);
   const instruction =
     customInstruction?.trim() || action?.instruction;
@@ -304,7 +321,9 @@ REVISION INSTRUCTION: ${instruction}
 
 Apply this revision and return the COMPLETE updated JSON in the identical schema — every field present, unrelated fields preserved as they are unless the revision requires changing them.`;
 
-  const schema = VIRAL_SCHEMAS[stage] as unknown as ZodSchema<unknown>;
+  const schema = (VIRAL_SCHEMAS as Partial<Record<ViralStage, unknown>>)[
+    stage
+  ] as ZodSchema<unknown>;
   const { output, runId } = await runAgent<unknown>({
     agentName: `viral_revise_${stage}`,
     userPrompt: prompt,

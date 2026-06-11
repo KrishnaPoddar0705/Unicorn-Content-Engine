@@ -240,6 +240,21 @@ export function viralEpisodeToMarkdown(
     );
   }
 
+  const w = outputs.interactive_webpage;
+  if (w) {
+    parts.push(
+      section(
+        "Interactive Research Page",
+        [
+          `**${w.title}** _(theme: ${w.theme})_`,
+          "",
+          `**Share link:** ${w.share_path}`,
+          `**Comment keyword:** \`${w.comment_keyword}\` — viewers comment this on the post to receive the page.`,
+        ].join("\n")
+      )
+    );
+  }
+
   const q = outputs.virality_critic;
   if (q) {
     parts.push(

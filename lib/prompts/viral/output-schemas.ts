@@ -528,6 +528,19 @@ export const StyleExtractorSchema = z.preprocess(
 );
 export type StyleExtractorOutput = z.infer<typeof StyleExtractorSchema>;
 
+// ---------- Interactive Webpage (9th stage; HTML lives in interactive_webpages) ----------
+
+export interface WebpageStageOutput {
+  webpage_id: string;
+  slug: string;
+  title: string;
+  theme: string;
+  comment_keyword: string;
+  share_path: string;
+  blog_path?: string;
+  html_length: number;
+}
+
 // ---------- Stage output union (for typed consumers) ----------
 
 export interface ViralStageOutputs {
@@ -539,4 +552,5 @@ export interface ViralStageOutputs {
   engagement_engineer?: EngagementEngineerOutput;
   virality_critic?: ViralityCriticOutput;
   project_bridge?: ProjectBridgeOutput;
+  interactive_webpage?: WebpageStageOutput;
 }
