@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
-        allow: ["/blog", "/blog/", "/webapps/"],
+        allow: ["/blog/projects", "/blog/project/", "/webapps/"],
         // Internal tool routes stay out of search indexes
         disallow: [
           "/dashboard",

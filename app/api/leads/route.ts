@@ -4,6 +4,18 @@ import { appendSheetRow, isSheetsConfigured } from "@/lib/google/sheets";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// Webpages may be served from theunicornlabs.com (proxied) while this API
+// lives on the app's own domain — the form posts cross-origin.
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+};
+
+export async function OPTIONS() {
+  return new NextResponse(null, { status: 204, headers: CORS_HEADERS });
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -13,7 +25,7 @@ export async function POST(request: Request) {
     const source = String(body.source || "").trim().slice(0, 200);
 
     if (!EMAIL_RE.test(email)) {
-      return NextResponse.json({ error: "A valid email is required" }, { status: 400 });
+      return NextResponse.json({ error: "A valid email is required" }, { status: 400, headers: CORS_HEADERS });
     }
 
     let syncedToSheet = false;
@@ -56,13 +68,13 @@ export async function POST(request: Request) {
     if (!syncedToSheet && !storedInDb) {
       return NextResponse.json(
         { error: sheetError || "Lead storage is not configured" },
-        { status: 503 }
+        { status: 503, headers: CORS_HEADERS }
       );
     }
 
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true }, { headers: CORS_HEADERS });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Failed to save lead";
-    return NextResponse.json({ error: message }, { status: 500 });
+    return NextResponse.json({ error: message }, { status: 500, headers: CORS_HEADERS });
   }
 }

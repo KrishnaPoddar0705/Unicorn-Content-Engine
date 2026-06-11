@@ -32,7 +32,7 @@ export async function GET(
   html = injectSeoHead(html, {
     title: post.title,
     description: post.description.slice(0, 300),
-    canonicalPath: `/blog/${post.blog_slug}`,
+    canonicalPath: `/blog/project/${post.blog_slug}`,
     publishedAt: post.created_at,
     keywords: [
       post.domain || "research",

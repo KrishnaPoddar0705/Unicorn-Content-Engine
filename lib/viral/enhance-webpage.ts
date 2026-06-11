@@ -7,6 +7,9 @@
 
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.theunicornlabs.com").replace(/\/$/, "");
 
+/** Where this app itself is reachable (the lead form posts here so it works when pages are proxied under the apex domain). */
+export const APP_URL = (process.env.NEXT_PUBLIC_APP_URL || "").replace(/\/$/, "");
+
 const LEAD_FORM_MARKER = "data-unicorn-lead-form";
 
 export function buildLeadFormSnippet(sourceSlug: string): string {
@@ -42,7 +45,7 @@ export function buildLeadFormSnippet(sourceSlug: string): string {
     btn.disabled = true;
     btn.textContent = "Sending\\u2026";
     status.textContent = "";
-    fetch("/api/leads", {
+    fetch(${JSON.stringify(`${APP_URL}/api/leads`)}, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -135,7 +138,7 @@ export function injectBacklinksFooter(html: string, related: RelatedPost[]): str
   const relatedLinks = related
     .map(
       (p) =>
-        `<li style="margin:6px 0;"><a href="${SITE_URL}/blog/${p.blogSlug}" style="color:#22d3ee;text-decoration:none;">${p.title.replace(/</g, "&lt;")}</a></li>`
+        `<li style="margin:6px 0;"><a href="${SITE_URL}/blog/project/${p.blogSlug}" style="color:#22d3ee;text-decoration:none;">${p.title.replace(/</g, "&lt;")}</a></li>`
     )
     .join("");
   const footer = `
@@ -143,7 +146,7 @@ export function injectBacklinksFooter(html: string, related: RelatedPost[]): str
   ${related.length > 0 ? `<p style="margin:0 0 8px;font-weight:600;color:#ece9f7;">Keep exploring</p><ul style="margin:0 0 18px;padding-left:18px;">${relatedLinks}</ul>` : ""}
   <p style="margin:0;">
     Published by <a href="${SITE_URL}" style="color:#22d3ee;text-decoration:none;font-weight:600;">The Unicorn Labs</a>
-    · <a href="${SITE_URL}/blog" style="color:#22d3ee;text-decoration:none;">All research breakdowns</a>
+    · <a href="${SITE_URL}/blog/projects" style="color:#22d3ee;text-decoration:none;">All research breakdowns</a>
     · We turn research papers into projects students can actually build.
   </p>
 </footer>`;

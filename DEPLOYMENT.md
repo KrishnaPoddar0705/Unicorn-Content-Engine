@@ -26,41 +26,55 @@ GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END P
 
 Leads are ALWAYS stored in the Supabase `leads` table as backup (with a `synced_to_sheet` flag), so nothing is lost if the sheet sync ever fails.
 
-## 3. Deploy to theunicornlabs.com
+## 3. Current setup + exposing /blog/project/<slug> on the apex
 
-### Option A — this app owns www.theunicornlabs.com (simplest)
+**Live today:**
+- `projects.theunicornlabs.com` → this app (Vercel). Articles at `/blog/project/<slug>`, index at `/blog/projects`.
+- `theunicornlabs.com` → the main WordPress site.
 
-1. Push this repo to GitHub, import it in [Vercel](https://vercel.com/new).
-2. Set all env vars from `.env.local` in Vercel → Project → Settings → Environment Variables. Add:
-   `NEXT_PUBLIC_SITE_URL=https://www.theunicornlabs.com`
-3. Vercel → Project → Settings → Domains → add `www.theunicornlabs.com` (and `theunicornlabs.com` redirecting to www). Update your DNS as Vercel instructs (CNAME `www` → `cname.vercel-dns.com`).
-4. Done: `/blog`, `/blog/[slug]`, `/webapps/[slug]`, `/sitemap.xml`, `/robots.txt` are live on the domain. The internal tool routes are blocked from search engines via robots.txt — but they are still publicly reachable, so consider adding Vercel password protection or basic auth middleware for the internal paths.
+**Vercel env vars (Project → Settings → Environment Variables):**
+```
+NEXT_PUBLIC_SITE_URL=https://www.theunicornlabs.com   # canonicals/sitemap point at the apex
+NEXT_PUBLIC_APP_URL=https://projects.theunicornlabs.com  # lead form posts here (CORS enabled)
+```
+Redeploy after setting these.
 
-### Option B — main site stays where it is; this app serves only /blog
+DNS alone cannot route paths — `theunicornlabs.com/blog/project/*` needs a proxy in front of WordPress. Pick one:
 
-If www.theunicornlabs.com already runs elsewhere (e.g. a landing page on Framer/Webflow/another Vercel project):
+### Recommended: Cloudflare Worker proxy (free, WordPress untouched)
 
-1. Deploy this app to Vercel on its own subdomain, e.g. `engine.theunicornlabs.com`.
-2. On the MAIN site project, proxy `/blog` to it:
-   - Vercel main project → `vercel.json`:
-     ```json
-     {
-       "rewrites": [
-         { "source": "/blog", "destination": "https://engine.theunicornlabs.com/blog" },
-         { "source": "/blog/:path*", "destination": "https://engine.theunicornlabs.com/blog/:path*" },
-         { "source": "/webapps/:path*", "destination": "https://engine.theunicornlabs.com/webapps/:path*" },
-         { "source": "/api/leads", "destination": "https://engine.theunicornlabs.com/api/leads" }
-       ]
-     }
-     ```
-   - (Framer/Webflow have equivalent reverse-proxy / rewrite settings.)
-3. Keep `NEXT_PUBLIC_SITE_URL=https://www.theunicornlabs.com` so canonicals, sitemap, and JSON-LD all point at the main domain — Google treats the proxied pages as first-party content.
-4. Submit `https://www.theunicornlabs.com/sitemap.xml` in [Google Search Console](https://search.google.com/search-console).
+1. [Cloudflare](https://dash.cloudflare.com) → Add site → `theunicornlabs.com` → Free plan. It imports your GoDaddy DNS records; verify they all came over.
+2. At GoDaddy → Domain → Nameservers → change to the two Cloudflare nameservers shown. (Registration stays at GoDaddy; only DNS moves.)
+3. Cloudflare → Workers & Pages → Create Worker, paste:
+   ```js
+   export default {
+     async fetch(request) {
+       const url = new URL(request.url);
+       url.hostname = "projects.theunicornlabs.com";
+       return fetch(new Request(url, request));
+     },
+   };
+   ```
+4. Worker → Settings → Triggers → add routes (zone `theunicornlabs.com`):
+   - `*theunicornlabs.com/blog/project/*`
+   - `*theunicornlabs.com/blog/projects`
+   - `*theunicornlabs.com/webapps/*`
+5. Done — `theunicornlabs.com/blog/project/<slug>` now serves the articles while every other path still hits WordPress. Canonicals already point at the apex, so all SEO credit accrues to theunicornlabs.com.
+
+### Fallback: WordPress redirects (no Cloudflare, weaker SEO)
+
+If you skip the proxy, add redirects in WordPress (e.g. the "Redirection" plugin):
+`/blog/project/(.*)` → `https://projects.theunicornlabs.com/blog/project/$1` (301).
+Pages then live on the subdomain; set `NEXT_PUBLIC_SITE_URL=https://projects.theunicornlabs.com` so canonicals match reality. SEO authority accrues to the subdomain instead of the apex.
+
+### Sitemap on the apex
+
+WordPress owns `theunicornlabs.com/sitemap.xml`. Submit the app's sitemap separately in Search Console: add the property, then submit `https://projects.theunicornlabs.com/sitemap.xml` — its URLs point at the apex (proxied) paths, which is valid as long as the proxy is live. With the Worker option you can also add a route for `/blog-sitemap.xml` if you prefer an apex-hosted sitemap.
 
 ## 4. SEO checklist after deploy
 
 - [ ] Verify the domain in Google Search Console and submit the sitemap.
 - [ ] Check one article with the [Rich Results Test](https://search.google.com/test/rich-results) — Article JSON-LD should be detected.
-- [ ] Every blog page already includes: canonical URL, meta description, OG/Twitter cards, Article schema, backlinks to the homepage + /blog + related articles.
+- [ ] Every blog page already includes: canonical URL, meta description, OG/Twitter cards, Article schema, backlinks to the homepage + /blog/projects + related articles.
 - [ ] The /blog index includes Blog schema with every post (good for AI answer engines / GEO).
 - [ ] Share blog URLs (not /webapps URLs) on social — they carry the SEO metadata; the comment-keyword DMs can use either.

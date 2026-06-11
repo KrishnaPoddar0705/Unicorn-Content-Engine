@@ -311,7 +311,7 @@ export const VIRAL_STAGES: StageDef[] = [
         theme: meta.theme,
         comment_keyword: meta.comment_keyword,
         share_path: `/webapps/${data.slug}`,
-        blog_path: `/blog/${blogSlug}`,
+        blog_path: `/blog/project/${blogSlug}`,
         html_length: html.length,
       };
       return output;

@@ -15,7 +15,7 @@ function formatDate(iso: string): string {
 function Card({ post, featured = false }: { post: BlogPost; featured?: boolean }) {
   return (
     <a
-      href={`/blog/${post.blog_slug}`}
+      href={`/blog/project/${post.blog_slug}`}
       className={`glass-panel group flex shrink-0 snap-start flex-col p-6 no-underline transition-colors hover:border-[#8b5cf6]/50 ${
         featured ? "w-[85vw] sm:w-96" : ""
       }`}
