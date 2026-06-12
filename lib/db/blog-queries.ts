@@ -8,6 +8,7 @@ export interface BlogPost {
   theme: string | null;
   description: string;
   domain: string | null;
+  cover_image_url: string | null;
   created_at: string;
 }
 
@@ -17,9 +18,17 @@ interface WebpageRow {
   slug: string;
   title: string;
   theme: string | null;
+  cover_image_url: string | null;
   created_at: string;
   viral_episodes: { winner_hook: string | null; domain: string | null } | null;
   episodes: { viral_hook: string | null; topic: string | null } | null;
+}
+
+/** Domain labels are short chips — long topic paragraphs (old-pipeline episodes) must not leak in. */
+function cleanDomain(value: string | null | undefined): string | null {
+  const v = value?.trim();
+  if (!v || v.length > 24 || /[\n.:;—]/.test(v)) return null;
+  return v;
 }
 
 function toBlogPost(row: WebpageRow): BlogPost | null {
@@ -34,7 +43,8 @@ function toBlogPost(row: WebpageRow): BlogPost | null {
       row.viral_episodes?.winner_hook ||
       row.episodes?.viral_hook ||
       `An interactive research breakdown: ${row.title}. Explore the mechanism, run the simulation, and build it yourself.`,
-    domain: row.viral_episodes?.domain || row.episodes?.topic || null,
+    domain: cleanDomain(row.viral_episodes?.domain) || cleanDomain(row.episodes?.topic),
+    cover_image_url: row.cover_image_url || null,
     created_at: row.created_at,
   };
 }
@@ -44,7 +54,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
   const { data } = await getSupabase()
     .from("interactive_webpages")
     .select(
-      "id, blog_slug, slug, title, theme, created_at, viral_episodes(winner_hook, domain), episodes(viral_hook, topic)"
+      "id, blog_slug, slug, title, theme, cover_image_url, created_at, viral_episodes(winner_hook, domain), episodes(viral_hook, topic)"
     )
     .eq("status", "published")
     .order("created_at", { ascending: false });
@@ -60,7 +70,7 @@ export async function getBlogPostBySlug(
   const { data } = await getSupabase()
     .from("interactive_webpages")
     .select(
-      "id, blog_slug, slug, title, theme, created_at, html_content, viral_episodes(winner_hook, domain), episodes(viral_hook, topic)"
+      "id, blog_slug, slug, title, theme, cover_image_url, created_at, html_content, viral_episodes(winner_hook, domain), episodes(viral_hook, topic)"
     )
     .eq("blog_slug", blogSlug)
     .maybeSingle();

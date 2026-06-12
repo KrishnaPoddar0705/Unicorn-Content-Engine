@@ -15,15 +15,20 @@ function formatDate(iso: string): string {
 }
 
 function cardHtml(post: BlogPost): string {
+  const coverSrc = post.cover_image_url || `/blog/cover/${post.blog_slug}`;
+  const cover = `<div class="card-cover"><img src="${esc(coverSrc)}" alt="${esc(post.title)} — abstract cover art" loading="lazy" /></div>`;
   return `
     <a class="card" href="/blog/project/${esc(post.blog_slug)}">
-      <div class="card-meta">
-        ${post.domain ? `<span class="card-domain">${esc(post.domain)}</span><span class="dot">·</span>` : ""}
-        <time datetime="${esc(post.created_at)}">${formatDate(post.created_at)}</time>
+      ${cover}
+      <div class="card-body">
+        <div class="card-meta">
+          ${post.domain ? `<span class="card-domain">${esc(post.domain)}</span><span class="dot">·</span>` : ""}
+          <time datetime="${esc(post.created_at)}">${formatDate(post.created_at)}</time>
+        </div>
+        <h2 class="card-title">${esc(post.title)}</h2>
+        <p class="card-desc">${esc(post.description)}</p>
+        <span class="card-cta">Open the interactive breakdown <span class="arrow">→</span></span>
       </div>
-      <h2 class="card-title">${esc(post.title)}</h2>
-      <p class="card-desc">${esc(post.description)}</p>
-      <span class="card-cta">Open the interactive breakdown <span class="arrow">→</span></span>
     </a>`;
 }
 
@@ -179,16 +184,40 @@ export async function GET() {
     display: flex; flex-direction: column;
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 24px;
-    padding: 24px;
+    overflow: hidden;
     text-decoration: none;
     background: rgba(0,0,0,0.45);
     transition: border-color 0.25s;
   }
   .card:hover { border-color: var(--plum); }
+  .card-cover {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .card-cover img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .card:hover .card-cover img { transform: scale(1.04); }
+  .card-cover-fallback {
+    background:
+      radial-gradient(ellipse 60% 80% at 30% 40%, rgba(128,82,255,0.35), transparent 65%),
+      radial-gradient(ellipse 45% 60% at 75% 65%, rgba(255,184,41,0.14), transparent 60%),
+      radial-gradient(ellipse 35% 45% at 60% 25%, rgba(21,132,110,0.2), transparent 60%),
+      #000;
+  }
+  .card-body {
+    display: flex; flex-direction: column; flex: 1;
+    padding: 24px;
+  }
   .card-meta {
     display: flex; align-items: center; gap: 8px;
     font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase;
     color: var(--smoke);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
   .card-domain { color: var(--amber); font-weight: 600; }
   .dot { color: var(--smoke); }

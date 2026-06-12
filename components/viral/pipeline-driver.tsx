@@ -81,7 +81,16 @@ export function PipelineDriver({
         if (!res.ok) break;
         const json = await res.json();
         applyStatus(json);
-        if (json.status === "complete" || json.status === "failed") break;
+        if (json.status === "complete") {
+          // Generate the blog cover art for the fresh webpage (fire-and-forget)
+          fetch("/api/blog/covers", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ limit: 1 }),
+          }).catch(() => {});
+          break;
+        }
+        if (json.status === "failed") break;
         if (!json.ran_stages || json.ran_stages.length === 0) {
           // Nothing runnable right now (another tab driving, or blocked) — back off.
           idleRounds += 1;

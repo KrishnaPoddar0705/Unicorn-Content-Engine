@@ -96,6 +96,7 @@ export async function generateSlideImage(params: {
   prompt: string;
   referenceImageUrl?: string;
   seed?: number;
+  aspectRatio?: "9:16" | "16:9" | "1:1";
 }): Promise<GenerateSlideImageResult> {
   const prompt = fitPromptForKling(params.prompt);
 
@@ -113,7 +114,7 @@ export async function generateSlideImage(params: {
   const body: Record<string, unknown> = {
     model_name: useReference ? IMAGE_TO_IMAGE_MODEL : TEXT_TO_IMAGE_MODEL,
     prompt,
-    aspect_ratio: "9:16",
+    aspect_ratio: params.aspectRatio || "9:16",
     resolution: "1k",
     n: 1,
   };
