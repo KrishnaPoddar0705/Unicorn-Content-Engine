@@ -146,7 +146,7 @@ export function injectBacklinksFooter(html: string, related: RelatedPost[]): str
   ${related.length > 0 ? `<p style="margin:0 0 8px;font-weight:600;color:#ece9f7;">Keep exploring</p><ul style="margin:0 0 18px;padding-left:18px;">${relatedLinks}</ul>` : ""}
   <p style="margin:0;">
     Published by <a href="${SITE_URL}" style="color:#22d3ee;text-decoration:none;font-weight:600;">The Unicorn Labs</a>
-    · <a href="${SITE_URL}/blog/projects" style="color:#22d3ee;text-decoration:none;">All research breakdowns</a>
+    · <a href="${SITE_URL}/blog" style="color:#22d3ee;text-decoration:none;">All research breakdowns</a>
     · We turn research papers into projects students can actually build.
   </p>
 </footer>`;

@@ -47,19 +47,36 @@ DNS alone cannot route paths — `theunicornlabs.com/blog/project/*` needs a pro
 2. At GoDaddy → Domain → Nameservers → change to the two Cloudflare nameservers shown. (Registration stays at GoDaddy; only DNS moves.)
 3. Cloudflare → Workers & Pages → Create Worker, paste:
    ```js
+   const ORIGIN = "projects.theunicornlabs.com";
+   const PROXY_PREFIXES = ["/blog", "/webapps/", "/api/leads"];
+
    export default {
      async fetch(request) {
        const url = new URL(request.url);
-       url.hostname = "projects.theunicornlabs.com";
-       return fetch(new Request(url, request));
+       const shouldProxy = PROXY_PREFIXES.some(
+         (p) => url.pathname === p || url.pathname.startsWith(p)
+       );
+       if (!shouldProxy) {
+         return new Response(
+           "Unicorn Labs blog proxy is live. Routes: " + PROXY_PREFIXES.join(", "),
+           { status: 200, headers: { "content-type": "text/plain" } }
+         );
+       }
+       url.hostname = ORIGIN;
+       try {
+         return await fetch(new Request(url, request));
+       } catch (e) {
+         return new Response("Origin unreachable: " + e.message, { status: 502 });
+       }
      },
    };
    ```
 4. Worker → Settings → Triggers → add routes (zone `theunicornlabs.com`):
-   - `*theunicornlabs.com/blog/project/*`
-   - `*theunicornlabs.com/blog/projects`
+   - `*theunicornlabs.com/blog*` (covers /blog and /blog/project/<slug>)
    - `*theunicornlabs.com/webapps/*`
-5. Done — `theunicornlabs.com/blog/project/<slug>` now serves the articles while every other path still hits WordPress. Canonicals already point at the apex, so all SEO credit accrues to theunicornlabs.com.
+
+   ⚠️ The `/blog*` route takes over the ENTIRE /blog path on the apex — if the WordPress site has its own blog at /blog, those WordPress posts become unreachable. That is the intended behavior here (/blog is the projects index).
+5. Done — `theunicornlabs.com/blog` shows all interactive projects as cards, each opening at `theunicornlabs.com/blog/project/<slug>`, while every other path still hits WordPress. Canonicals already point at the apex, so all SEO credit accrues to theunicornlabs.com.
 
 ### Fallback: WordPress redirects (no Cloudflare, weaker SEO)
 
