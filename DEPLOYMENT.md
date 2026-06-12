@@ -34,7 +34,7 @@ Leads are ALWAYS stored in the Supabase `leads` table as backup (with a `synced_
 
 **Vercel env vars (Project → Settings → Environment Variables):**
 ```
-NEXT_PUBLIC_SITE_URL=https://www.theunicornlabs.com   # canonicals/sitemap point at the apex
+NEXT_PUBLIC_SITE_URL=https://theunicornlabs.com   # canonicals/sitemap point at the apex
 NEXT_PUBLIC_APP_URL=https://projects.theunicornlabs.com  # lead form posts here (CORS enabled)
 ```
 Redeploy after setting these.

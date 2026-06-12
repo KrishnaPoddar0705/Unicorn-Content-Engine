@@ -5,7 +5,7 @@
  * these templates upgrades every page at once.
  */
 
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.theunicornlabs.com").replace(/\/$/, "");
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://theunicornlabs.com").replace(/\/$/, "");
 
 /** Where this app itself is reachable (the lead form posts here so it works when pages are proxied under the apex domain). */
 export const APP_URL = (process.env.NEXT_PUBLIC_APP_URL || "").replace(/\/$/, "");

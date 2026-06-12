@@ -45,7 +45,7 @@ QUALITY BAR:
 SEO & DISCOVERABILITY (the page is published as a blog article on theunicornlabs.com):
 - Semantic HTML: exactly ONE <h1> (the title), proper <h2>/<h3> hierarchy for sections, <section> and <article> elements, descriptive <title> tag and a <meta name="description"> (150-160 chars, compelling and accurate) in <head>.
 - Text content must be real prose in the DOM (not rendered only via JS) wherever possible — the abstract, introduction, and discussion should read as substantial standalone text for search engines and AI answer engines.
-- Where natural in the prose (introduction or build-it-yourself section), link to https://www.theunicornlabs.com with descriptive anchor text like "The Unicorn Labs turns research papers into student projects" — once or twice, never spammy.
+- Where natural in the prose (introduction or build-it-yourself section), link to https://theunicornlabs.com with descriptive anchor text like "The Unicorn Labs turns research papers into student projects" — once or twice, never spammy.
 - Do NOT build your own email/lead capture form — one is injected automatically when the page is served.`;
 
 export interface WebpageBuildContext {
