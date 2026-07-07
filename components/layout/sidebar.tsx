@@ -12,6 +12,7 @@ import {
   Settings,
   Sparkles,
   Zap,
+  Atom,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { BRAND_NAME, SERIES_NAME } from "@/lib/brand/voice";
@@ -21,6 +22,7 @@ const NAV = [
   { href: "/papers", label: "Paper Library", icon: FileText },
   { href: "/episodes", label: "Episodes", icon: Clapperboard },
   { href: "/viral", label: "Viral Lab", icon: Zap },
+  { href: "/labs", label: "Unicorn Labs", icon: Atom },
   { href: "/demos", label: "Demos", icon: FlaskConical },
   { href: "/calendar", label: "Calendar", icon: Calendar },
   { href: "/agents", label: "Agents", icon: Bot },

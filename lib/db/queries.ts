@@ -167,9 +167,10 @@ export async function getAgentRuns() {
 export async function getSettings() {
   if (!isSupabaseConfigured()) {
     return {
-      llm_provider: "anthropic",
+      llm_provider: "gemini",
       openai_model: "gpt-4o",
       anthropic_model: "claude-opus-4-8",
+      gemini_model: "gemini-2.5-flash",
       brand_voice_overrides: {},
       content_preferences: {},
     };

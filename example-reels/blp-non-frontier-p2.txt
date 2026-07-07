@@ -1,0 +1,38 @@
+00:00:00
+In the last year, I redrew the AI stack and asked which layer can India own? But we need to understand that the global conversation around AI strategy is dominated by Western frames, and almost none of them are trying to answer India's questions.
+
+00:00:11
+Let me walk you through some of them because we need to understand them as context. The first model that I read about is the winner-takes-all model. It was developed by Leopold Aschenbrenner, former OpenAI researcher, and runs a five point five billion dollar hedge fund.
+
+00:00:22
+His twenty twenty-four essay on situational awareness argues that AGI arrives by twenty twenty-seven, super intelligence by twenty-thirty, and whichever country gets there first achieves decisive military advantage. Given the current conditions, this race is mostly between US and China. India isn't a participant at the moment.
+
+00:00:39
+The second model is a diffusion beats innovation model. It was developed by Jeffrey Ding, who is a political scientist at George Washington University. His argument was that power transitions in history don't come from inventing technologies first. They come from spreading them across the entire economy.
+
+00:00:53
+So the country that wins the AI race isn't the one with the best model. It's the one whose hospitals, factories, and small businesses actually use AI productively. Third model is the extinction risk model.
+
+00:01:02
+It is the most rigorous version of a May twenty twenty-five paper by MIRI. This paper maps four ways in which the world might respond to AI development. The first one is that major powers might coordinate to halt frontier AI development the way world banned biological weapons.
+
+00:01:16
+The second way the US might treat AI like a Manhattan Project and race to build it first. The third way is what we already have now, private companies racing each other with light government oversight. The fourth way is that the great powers
+
+00:01:27
+may threaten to sabotage each other's projects to keep the AI capabilities in check. In this frame, the question for every non-AI frontier country isn't strategy at all. It's whether to join an international coordination regime and on what terms.
+
+00:01:38
+The fourth and the final model is the decentralized resilience model. It was developed by Vitalik Buterin. I don't know if I'm pronouncing it correctly, but he was the creator of Ethereum. His argument is that the AI debate is stuck between two bad options.
+
+00:01:49
+On one side, we have the accelerationists who say build everything fast. Safety concerns are overblown. On the other side, we have people calling for a global off switch, the legal and technical infrastructure to shut down dangerous AI projects worldwide. Buterin says that both are likely to fail.
+
+00:02:04
+Pure acceleration proliferates dangerous capabilities to bad actors. But on the other hand, if we have a global off switch, whoever holds that off switch becomes the single most powerful actor. His third path is that we don't centralize control. Instead, we build defensive technologies that let a decentralized world stay safe
+
+00:02:19
+as AI spreads. Make the world resilient enough that no one needs to be in charge. I want you to notice what all of the frameworks discussed above have in common. They're mostly written by frontier AI countries
+
+00:02:29
+for themselves about a question that's centrally relevant for the West. That's why global conversation about Indian AI strategy can't be an import job. The actual questions for India are different. What does a country like India with limited frontier capability at the moment, but enormous market talent and public infrastructure do?

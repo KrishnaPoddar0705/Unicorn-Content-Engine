@@ -1,0 +1,38 @@
+00:00:00
+Model commoditization will outrun model dependence. India's bet is on this thesis. In the last reel, I said that we are reliant on two things. The models US shares with us, which as of last week is Frontier Minus One and China's open source.
+
+00:00:13
+Now both have problems deeper than they look. First, let's understand why I think Frontier Minus One is not good enough. The whole open source is fine position rests on one assumption, that AI capability commoditizes. That the gap between Frontier and everyone else closes over time.
+
+00:00:28
+I believed that. I do not anymore. Commoditization is real, but it only happens at the trailing edge. So last year's Frontier gets cheap and open while the Frontier itself moves on. So the thing that commoditizes is never the thing that matters.
+
+00:00:41
+And if AGI is even on the table, the Frontier pulls away faster, not slower. That means Frontier Minus One stops being almost as good and starts meaning permanently behind. And here is the part that I think a lot of people might miss.
+
+00:00:54
+A model is not a capability in itself. It also matters where that capability gets exercised. So think about it. The country at the Frontier designs better drugs, better materials, better weapons, and because those gains sit at the start
+
+00:01:06
+of the pipelines that run for decades, they stack year over year. Now, the obvious objection that you might have is that, Drishya, the capability diffuses. That India can just buy better drugs
+
+00:01:15
+and license better material without owning the model. But remember, you only get the diffusion the Frontier holder allows. We watched the limit of that last week when one export order pulled a Frontier model from every foreign country overnight. So in the domains that decide the next fifty years, like medicine,
+
+00:01:29
+research, defense, diffusion is the first thing that gets gated. So that means Frontier Minus One is not a slightly worse chatbot. It is a compounding deficit in precisely the places you are not allowed to import your way out of. The second problem with the thesis is AI as values infrastructure.
+
+00:01:45
+Value sovereignty is not about the model. It is about who controls the weight, and that gives you a spectrum. American Frontier model we rent sits on one end. We never touch the weights, so we cannot align it to anything. But I think alignment that you do not
+
+00:01:57
+control is not alignment to your values. So whoever's model runs in your country shapes its information space the way a broadcast network or a textbook one state. Now, if we talk about China's open weights, they sit further along.
+
+00:02:07
+We hold the weight, so we can strip the explicit refusals, the obvious censorship, but the deep priors, worldview baked in during pre-training are sticky, and they do not announce themselves. So it's harder to remove that influence. So the open source model hedge is also not clean.
+
+00:02:20
+It is dependence one layer deeper where it is harder to see and harder to remove. The only end of the spectrum that is actually yours is the one where you control the weights from the base. There is also a third problem with this,
+
+00:02:31
+which I will discuss in the next stream

@@ -1,6 +1,13 @@
 import { randomUUID } from "crypto";
 import type { ZodSchema } from "zod";
-import { getLLMProvider, getSettingsModels, type ImagePart, type Message } from "@/lib/llm/provider";
+import {
+  getLLMProvider,
+  getSettingsModels,
+  resolveModelForProvider,
+  resolveProviderName,
+  type ImagePart,
+  type Message,
+} from "@/lib/llm/provider";
 import { getBrandVoicePrompt } from "@/lib/brand/voice";
 import { getSupabase, isSupabaseConfigured } from "@/lib/supabase/server";
 
@@ -26,14 +33,8 @@ export async function runAgent<T>(params: {
   images?: ImagePart[];
 }): Promise<{ output: T; runId?: string; usage: Record<string, number> }> {
   const settings = await getSettingsModels();
-  const providerName =
-    settings?.llm_provider ||
-    (process.env.DEFAULT_LLM_PROVIDER as "openai" | "anthropic") ||
-    "anthropic";
-  const model =
-    providerName === "openai"
-      ? settings?.openai_model || "gpt-4o"
-      : settings?.anthropic_model || "claude-opus-4-8";
+  const providerName = resolveProviderName(settings);
+  const model = resolveModelForProvider(providerName, settings);
 
   const provider = await getLLMProvider(providerName);
   const system = [getBrandVoicePrompt(), params.extraSystem].filter(Boolean).join("\n\n");
@@ -130,14 +131,8 @@ export async function runAgentText(params: {
   extraSystem?: string;
 }): Promise<{ content: string; runId?: string; usage: Record<string, number> }> {
   const settings = await getSettingsModels();
-  const providerName =
-    settings?.llm_provider ||
-    (process.env.DEFAULT_LLM_PROVIDER as "openai" | "anthropic") ||
-    "anthropic";
-  const model =
-    providerName === "openai"
-      ? settings?.openai_model || "gpt-4o"
-      : settings?.anthropic_model || "claude-opus-4-8";
+  const providerName = resolveProviderName(settings);
+  const model = resolveModelForProvider(providerName, settings);
 
   const provider = await getLLMProvider(providerName);
   const system = [getBrandVoicePrompt(), params.extraSystem].filter(Boolean).join("\n\n");

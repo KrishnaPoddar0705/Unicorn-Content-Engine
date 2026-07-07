@@ -1,20 +1,18 @@
 import { NextResponse } from "next/server";
-import { getLLMProvider } from "@/lib/llm/provider";
+import { getLLMProvider, resolveModelForProvider, type LLMProviderName } from "@/lib/llm/provider";
 import { getSettings } from "@/lib/db/queries";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json().catch(() => ({}));
     const settings = await getSettings();
-    const provider =
+    const provider = (
       body.provider ||
       settings?.llm_provider ||
       process.env.DEFAULT_LLM_PROVIDER ||
-      "anthropic";
-    const model =
-      provider === "openai"
-        ? body.model || settings?.openai_model || "gpt-4o"
-        : body.model || settings?.anthropic_model || "claude-opus-4-8";
+      "gemini"
+    ) as LLMProviderName;
+    const model = body.model || resolveModelForProvider(provider, settings);
 
     const llm = await getLLMProvider(provider);
     const result = await llm.complete({

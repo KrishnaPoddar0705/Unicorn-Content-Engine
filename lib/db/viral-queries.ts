@@ -1,14 +1,18 @@
 import { getSupabase, isSupabaseConfigured } from "@/lib/supabase/server";
 import type {
   ContentSeriesTemplate,
+  ContentVertical,
   EpisodeRevision,
   EpisodeScore,
+  IdeaStatus,
   ReferenceImage,
   StyleProfile,
   ViralEpisode,
   ViralEpisodeOutput,
+  ViralIdea,
   ViralStage,
 } from "@/lib/supabase/types";
+import type { ScoutedIdea } from "@/lib/agents/viral/idea-scout";
 
 export interface ViralEpisodeListItem extends ViralEpisode {
   episode_scores?: EpisodeScore[];
@@ -16,13 +20,16 @@ export interface ViralEpisodeListItem extends ViralEpisode {
   critic_score?: number | null;
 }
 
-export async function getViralEpisodes(): Promise<ViralEpisodeListItem[]> {
+export async function getViralEpisodes(
+  vertical: ContentVertical = "viral"
+): Promise<ViralEpisodeListItem[]> {
   if (!isSupabaseConfigured()) return [];
   const supabase = getSupabase();
   const [{ data: episodes }, { data: critics }] = await Promise.all([
     supabase
       .from("viral_episodes")
       .select("*, episode_scores(*), viral_episode_outputs(stage, status)")
+      .eq("vertical", vertical)
       .order("created_at", { ascending: false }),
     supabase
       .from("viral_episode_outputs")
@@ -114,11 +121,14 @@ export interface ViralInsightRow {
   score: EpisodeScore;
 }
 
-export async function getScoredEpisodes(): Promise<ViralInsightRow[]> {
+export async function getScoredEpisodes(
+  vertical: ContentVertical = "viral"
+): Promise<ViralInsightRow[]> {
   if (!isSupabaseConfigured()) return [];
   const { data } = await getSupabase()
     .from("episode_scores")
-    .select("*, viral_episodes(*)")
+    .select("*, viral_episodes!inner(*)")
+    .eq("viral_episodes.vertical", vertical)
     .order("updated_at", { ascending: false });
   return ((data || []) as (EpisodeScore & { viral_episodes: ViralEpisode })[])
     .filter((row) => row.viral_episodes)
@@ -126,4 +136,52 @@ export async function getScoredEpisodes(): Promise<ViralInsightRow[]> {
       const { viral_episodes, ...score } = row;
       return { episode: viral_episodes, score: score as EpisodeScore };
     });
+}
+
+// ---- Viral Ideas bank ----
+
+export async function getViralIdeas(
+  status?: IdeaStatus,
+  vertical: ContentVertical = "viral"
+): Promise<ViralIdea[]> {
+  if (!isSupabaseConfigured()) return [];
+  let query = getSupabase().from("viral_ideas").select("*").eq("vertical", vertical);
+  if (status) query = query.eq("status", status);
+  const { data } = await query
+    .order("virality_score", { ascending: false })
+    .order("created_at", { ascending: false });
+  return (data || []) as ViralIdea[];
+}
+
+export async function insertViralIdeas(
+  ideas: ScoutedIdea[],
+  vertical: ContentVertical = "viral"
+): Promise<ViralIdea[]> {
+  if (ideas.length === 0) return [];
+  const rows = ideas.map((idea) => ({
+    title: idea.title,
+    hook: idea.hook ?? null,
+    summary: idea.summary,
+    fields: idea.fields ?? [],
+    domain: idea.domain ?? null,
+    why_viral: idea.why_viral ?? null,
+    virality_score: idea.virality_score ?? 0,
+    source_urls: idea.source_urls ?? [],
+    audience: idea.audience ?? null,
+    vertical,
+  }));
+  const { data, error } = await getSupabase().from("viral_ideas").insert(rows).select("*");
+  if (error) throw new Error(error.message);
+  return (data || []) as ViralIdea[];
+}
+
+export async function updateIdeaStatus(
+  id: string,
+  status: IdeaStatus,
+  viralEpisodeId?: string | null
+): Promise<void> {
+  const patch: Record<string, unknown> = { status, updated_at: new Date().toISOString() };
+  if (viralEpisodeId !== undefined) patch.viral_episode_id = viralEpisodeId;
+  const { error } = await getSupabase().from("viral_ideas").update(patch).eq("id", id);
+  if (error) throw new Error(error.message);
 }

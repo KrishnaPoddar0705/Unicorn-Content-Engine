@@ -8,6 +8,7 @@ import type {
   ViralEpisodeStatus,
 } from "@/lib/supabase/types";
 import { buildSharedContext } from "@/lib/prompts/viral/shared-brand-context";
+import { buildLabsContext } from "@/lib/viral/labs-context";
 import { getRevisionAction } from "@/lib/prompts/viral/revision-actions";
 import type { ViralStageOutputs } from "@/lib/prompts/viral/output-schemas";
 import { buildContentMemorySummary } from "@/lib/viral/content-memory";
@@ -193,9 +194,12 @@ export async function advanceViralPipeline(episodeId: string): Promise<ViralPipe
   const memorySummary = MEMORY_STAGES.some((s) => claimed.includes(s))
     ? await buildContentMemorySummary()
     : "";
+  const labs = episode.vertical === "labs" ? await buildLabsContext(episode) : null;
   const baseContext = buildSharedContext({
     episode,
     seriesSnippet: episode.content_series_templates?.prompt_snippet,
+    brandSnippet: labs?.brandSnippet,
+    seriesContext: labs?.seriesContext,
     styleSnippet:
       episode.visual_style_mode !== "default"
         ? resolveStyleInstruction(episode)
@@ -308,9 +312,12 @@ export async function reviseViralStage(params: {
     customInstruction?.trim() || action?.instruction;
   if (!instruction) throw new Error(`Unknown revision action: ${actionKey}`);
 
+  const labs = episode.vertical === "labs" ? await buildLabsContext(episode) : null;
   const baseContext = buildSharedContext({
     episode,
     seriesSnippet: episode.content_series_templates?.prompt_snippet,
+    brandSnippet: labs?.brandSnippet,
+    seriesContext: labs?.seriesContext,
   });
 
   const prompt = `Here is the current ${stage} output for the episode "${episode.title}":
@@ -384,6 +391,9 @@ export async function createViralEpisode(input: {
   series_template_id?: string | null;
   style_profile_id?: string | null;
   reference_image_id?: string | null;
+  vertical?: ViralEpisode["vertical"];
+  series_id?: string | null;
+  part_number?: number | null;
 }): Promise<string> {
   const supabase = getSupabase();
   const { data: episode, error } = await supabase

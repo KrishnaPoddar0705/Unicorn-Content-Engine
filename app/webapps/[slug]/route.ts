@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSupabase, isSupabaseConfigured } from "@/lib/supabase/server";
+import { autoRepairWebpageJsx } from "@/lib/agents/webpage-jsx";
 import { injectLeadForm } from "@/lib/viral/enhance-webpage";
 
 export async function GET(
@@ -23,7 +24,7 @@ export async function GET(
     return new NextResponse("Webapp not found", { status: 404 });
   }
 
-  const html = injectLeadForm(data.html_content, slug);
+  const html = injectLeadForm(autoRepairWebpageJsx(data.html_content), slug);
 
   return new NextResponse(html, {
     headers: {

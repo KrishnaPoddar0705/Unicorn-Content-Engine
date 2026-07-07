@@ -1,0 +1,38 @@
+00:00:00
+Classical computers are not hitting a wall because they are slow. They're hitting the wall because representing and searching certain problem spaces is fundamentally impossible with binary computation. Every classical computer runs on one idea, that information is binary, a one or a zero, true or false.
+
+00:00:16
+But certain problems don't have two states. They have trillion possible states simultaneously, and the answer lives somewhere in the relationship between all of them at once. Drug molecules, protein structures, optimal financial portfolios. A classical computer approaches these problems with increasingly clever algorithms.
+
+00:00:30
+But the solution space grows exponentially, and no classical algorithm escapes that scaling. The math doesn't work. This is not a hardware problem. The bit can technically represent these problems, but doing so requires exponential resources. It's a complexity problem.
+
+00:00:45
+So here is the question. What if your fundamental unit of information, the bit, did not have to commit to a state? And that is where the concept of qubit comes into picture. Everywhere I read on the Internet, to describe qubit,
+
+00:00:56
+people use this analogy. Imagine a coin. Heads is one, tails is zero. A qubit is a coin spinning in the air. So it is one and zero simultaneously.
+
+00:01:05
+And I'll be honest, that explanation always annoyed me because what does that even mean? So here is how I understand qubit. A qubit is not a thing, it is a concept. It is basically a state representing object.
+
+00:01:15
+Any physical object that can hold information in an unresolved in between state is a qubit. It hasn't committed. It's genuinely existing across multiple possibilities at once until it is measured. And here is where it gets beautiful because that object can be anything.
+
+00:01:30
+For example, we can take the magnetic spin of an electron pointing up, down, or both. And this is spin qubits, the approach Intel uses to build quantum computers. And another example can be a photon, a particle of light traveling through optical components.
+
+00:01:42
+This is called photonic qubits, and this is what Confluence, the company I just interviewed, is betting on to build quantum computers. All of these are qubits. All of these are different physical representation of the same idea. Information that hasn't collapsed into a definite answer yet.
+
+00:01:56
+They are all chasing the same thing. Find a physical object that can stay in that unresolved state long enough to compute something useful because the moment anything disturbs it, heat, vibration, a stray particle, it collapses.
+
+00:02:07
+It picks a state and it becomes classical. That collapse has a name. It's called decoherence. And the entire engineering battle of quantum computing is one sentence. Keep the qubit unresolved long enough to get your
+
+00:02:17
+answer before nature forces it to decide. In the next years, I will cover what actually happens when qubit interacts and why it gives the computational power that scales exponentially. I just recorded an episode with the founder of Confluence.
+
+00:02:28
+They're one of the few companies building quantum computer in India. Stay tuned for the episode

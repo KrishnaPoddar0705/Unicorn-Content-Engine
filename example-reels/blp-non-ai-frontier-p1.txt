@@ -1,0 +1,35 @@
+00:00:00
+The way a lot of people draw the AI stack currently has missing pieces. The standard drawing starts at the foundation model, maybe at compute if you're being careful, and everything downstream from there is drawn with reasonable accuracy because that part is understood.
+
+00:00:11
+What's missing is the upstream. If we go back further, before compute, there are chips. Before chips, there are foundries, the fabrication plants that manufacture those chips. But most importantly, before the foundries, there is energy. That is the layer that a lot of people miss.
+
+00:00:24
+Data centers are among the most energy-intensive infrastructure we've built at scale. Training a frontier model consumes the electricity equivalent of running a hundred transatlantic flights. That's comparable to entire national grids. Energy isn't the context for AI, it is the foundation. Complete AI stack reads like this: energy, then foundries, then chips,
+
+00:00:41
+then compute, then foundation models, and downstream from there, LLMs and vision models, then SLMs, and then at the bottom, wrappers. Energy, the layer that a lot of people miss, is precisely where Saudi Arabia made its move.
+
+00:00:53
+Not at foundation models where US and China have enormous research and talent leads, not at chips where TSMC and NVIDIA have decade-long manufacturing moats, but at the base of the stack, the layer that every country competing above it depends on, where Saudi Arabia has always had structural advantage: cheap, abundant energy.
+
+00:01:09
+Electricity in the UAE and Saudi runs at five to six cents per kilowatt hour. The US average runs at nine to fifteen cents. At data center scale, if we are drawing megawatts of power continuously around the clock,
+
+00:01:20
+that differential is the entire operating margin, and it comes from geology and sovereign pricing decisions, not from a development stage gap that closes as an economy matures. What followed from this recognition is not incremental. Microsoft committed fifteen billion dollars to UAE infrastructure through 2029.
+
+00:01:36
+The US-UAE AI campus being built in Abu Dhabi will be the greatest AI infrastructure facility outside the United States. The region's total data center capacity is set to triple from one gigawatt in 2025 to
+
+00:01:47
+three point three gigawatt in 2030. It also has twenty-one billion dollars in confirmed investments, and, and most importantly, none of this required fundraising cycles or market timing. Sovereign wealth funds like G42 in Abu Dhabi and Public Investment Fund in Saudi Arabia deploy capital
+
+00:02:00
+at timelines that private investors cannot match. Saudi Arabia is not at the frontier of foundation model research. It is not making chips. By the conventional frame of the AI race, it barely appears. But it identified the layer of the complete stack that maps onto
+
+00:02:13
+what it already structurally has, and it moved at a scale and speed that most frontier countries haven't matched at that layer. That is a framework question for every non-AI frontier country in this cycle. Not whether to build a foundation model or not,
+
+00:02:25
+but which layer of the complete AI stack you can realistically own given what you already have. And that's an answer that we will try to find for India over the next couple of reels.

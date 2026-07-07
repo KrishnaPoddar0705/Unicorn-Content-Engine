@@ -18,7 +18,7 @@ export type DemoBuildStatus = "not_started" | "spec_ready" | "building" | "ready
 export type DemoStatus = "spec" | "built" | "published";
 export type PostFormat = "reel" | "carousel" | "story";
 export type WorkflowStatus = "not_started" | "in_progress" | "done";
-export type LLMProviderName = "openai" | "anthropic";
+export type LLMProviderName = "openai" | "anthropic" | "gemini";
 export type AgentRunStatus = "running" | "success" | "failed";
 export type ParseStatus = "pending" | "complete" | "failed" | "not_implemented";
 
@@ -224,6 +224,7 @@ export interface Settings {
   llm_provider: LLMProviderName;
   openai_model: string;
   anthropic_model: string;
+  gemini_model: string;
   brand_voice_overrides: Record<string, unknown>;
   content_preferences: Record<string, unknown>;
 }
@@ -239,6 +240,9 @@ export interface Upload {
 }
 
 // ---- Viral Research Episode Pipeline ----
+
+/** Which content tab an episode/idea belongs to. "viral" = Viral Lab, "labs" = The Unicorn Labs series engine. */
+export type ContentVertical = "viral" | "labs";
 
 export type ViralInputMode = "paper" | "idea" | "topic" | "trend" | "reference_visual";
 export type ViralStage =
@@ -320,6 +324,9 @@ export interface ViralEpisode {
   current_stage: ViralStage | null;
   winner_hook: string | null;
   winner_archetype: string | null;
+  vertical: ContentVertical;
+  series_id: string | null;
+  part_number: number | null;
   created_at: string;
   updated_at: string;
   content_series_templates?: ContentSeriesTemplate;
@@ -366,6 +373,67 @@ export interface EpisodeScore {
   performance_notes: string | null;
   posted_url: string | null;
   posted_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+// ---- Viral Ideas bank ----
+
+export type IdeaStatus = "new" | "saved" | "used" | "dismissed";
+
+export interface ViralIdea {
+  id: string;
+  title: string;
+  hook: string | null;
+  summary: string;
+  fields: string[];
+  domain: string | null;
+  why_viral: string | null;
+  virality_score: number;
+  source_urls: string[];
+  audience: string | null;
+  status: IdeaStatus;
+  vertical: ContentVertical;
+  viral_episode_id: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+// ---- The Unicorn Labs — multi-part series ----
+
+export type SeriesStatus = "planned" | "in_progress" | "complete";
+
+/** One planned part of a series, produced by the Series Architect. */
+export interface SeriesArcPart {
+  part_number: number;
+  working_title: string;
+  covers: string;
+  first_principles_reframe: string;
+  interdisciplinary_bridges: string[];
+  india_angle: string;
+  teases_next: string;
+}
+
+export interface SeriesArc {
+  series_title: string;
+  premise: string;
+  parts: SeriesArcPart[];
+}
+
+export interface ViralSeries {
+  id: string;
+  title: string;
+  topic: string;
+  premise: string | null;
+  domain: string | null;
+  target_audience: string;
+  depth: string;
+  tone: string;
+  platform: string;
+  total_parts: number;
+  arc: SeriesArc;
+  status: SeriesStatus;
+  vertical: ContentVertical;
   created_at: string;
   updated_at: string;
 }

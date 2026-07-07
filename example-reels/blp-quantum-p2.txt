@@ -1,0 +1,35 @@
+00:00:00
+Quantum doesn't give you the right answer. It gives you a probability distribution, and somehow that is more powerful than any definite answer a classical computer could produce. In the previous reel,
+
+00:00:09
+I said that bit is the wrong unit for certain kinds of problems, and here is what I mean. There is a class of problems called NP problems, where verifying an answer is easy, but finding it is exponentially hard. For example, you can instantly check if a drug molecule is stable,
+
+00:00:22
+but, but finding the right molecule from ten to the power of three hundred possibilities is something that a classical computer could never finish. This is where quantum comes in, not because it is faster at the same computation,
+
+00:00:32
+but because of how it represents and searches that space. We discussed qubits in the last reel, and one qubit holds two states simultaneously. Ten entangled qubits don’t represent ten separate states. They hold two to the power of ten.
+
+00:00:44
+That is one thousand twenty-four states simultaneously as one unified system. And this is superposition at scale. The quantum system isn't trying combinations one by one. It is representing all of them at once. But representing all combination is not the same as solving the problem.
+
+00:00:57
+Here is where another property of quantum comes in, which is called interference. Quantum states behave like waves, and waves do something that bits don't. They can cancel each other or amplify each other depending on how they meet. Quantum algorithms are engineered so that the wrong answers cancel out. If the crest of the wave meets the trough of the wave,
+
+00:01:14
+they destroy each other and correct answers amplify. If the crest meets the crest, they get stronger. You are not searching for the answer. You are rigging the physics so wrong answers eliminate themselves
+
+00:01:23
+and only the right answers survive loud enough to measure. But here is the thing. When you measure, you don't get one definitive answer. You get a probability distribution. The correct answer has the highest probability, and others have lower probabilities.
+
+00:01:34
+You are collapsing a wave of possibilities into the most likely truth. And if this feels somewhat familiar, it should if you've watched some of my previous reels. Take this with a grain of salt, but a neural network does something loosely similar.
+
+00:01:45
+Every layer takes a distribution of possibilities and shifts the weight towards the most likely answer. Successive computation collapsing uncertainty into signal. The mathematics are not the same. Quantum is far more complex, but I think the intuition rhymes.
+
+00:01:57
+In the next reel, we will talk about the actual engineering problem. Quantum systems do not want to stay in superposition, and everything in the physical world collapses them. That battle has a name, and that is why building a quantum computer is
+
+00:02:07
+one of the hardest things humans have attempted.

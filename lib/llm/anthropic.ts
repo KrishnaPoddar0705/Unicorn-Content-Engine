@@ -1,3 +1,4 @@
+import "server-only";
 import Anthropic from "@anthropic-ai/sdk";
 import type { LLMProvider, LLMCompleteParams, LLMCompleteResult } from "./provider";
 import { parseJSON } from "./parse-json";

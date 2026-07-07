@@ -23,6 +23,7 @@ export async function PUT(request: Request) {
         llm_provider: body.llm_provider,
         openai_model: body.openai_model,
         anthropic_model: body.anthropic_model,
+        gemini_model: body.gemini_model,
         brand_voice_overrides: body.brand_voice_overrides,
         content_preferences: body.content_preferences,
       })

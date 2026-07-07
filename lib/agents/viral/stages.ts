@@ -7,8 +7,16 @@ import {
   WEBPAGE_SYSTEM,
   buildWebpageHtmlPrompt,
   buildWebpageMetaPrompt,
+  buildWebpageRepairPrompt,
   type WebpageBuildContext,
 } from "@/lib/prompts/viral/webpage-builder";
+import {
+  findWebpageJsxIssues,
+  autoRepairWebpageJsx,
+  replaceBabelBlock,
+  validateBabelCode,
+  stripCodeFences,
+} from "@/lib/agents/webpage-jsx";
 import { describeSourceMaterial } from "@/lib/prompts/viral/shared-brand-context";
 import { buildCuriosityMinerPrompt } from "@/lib/prompts/viral/curiosity-miner";
 import { buildExpertResearchPrompt } from "@/lib/prompts/viral/expert-research";
@@ -61,6 +69,53 @@ function winnerHook(ctx: StageRunCtx): string {
     (ctx.outputs.hook_lab as HookLabOutput | undefined)?.winner ||
     ctx.episode.title
   );
+}
+
+const MAX_WEBPAGE_REPAIR_ATTEMPTS = 3;
+
+/**
+ * Guarantee the saved page actually renders. The whole React app lives in
+ * <script type="text/babel"> blocks the browser compiles with Babel; one
+ * syntax error blanks the entire page, leaving only the serve-time lead form.
+ * Re-ask the model to fix any block that fails to parse, splicing the corrected
+ * code back in. Best-effort: if a block can't be repaired we save what we have
+ * rather than failing the pipeline (a blank page is no worse than no page).
+ */
+async function repairWebpageJsx(html: string, ctx: StageRunCtx): Promise<string> {
+  let current = autoRepairWebpageJsx(html);
+  for (let attempt = 0; attempt < MAX_WEBPAGE_REPAIR_ATTEMPTS; attempt++) {
+    const issues = findWebpageJsxIssues(current);
+    if (issues.length === 0) return current;
+
+    let repairedAny = false;
+    for (const issue of issues) {
+      const { content } = await runAgentText({
+        agentName: "viral_webpage_jsx_repair",
+        userPrompt: buildWebpageRepairPrompt(issue.block.code, issue.error),
+        context: ctx.context,
+        extraSystem: WEBPAGE_SYSTEM,
+        maxTokens: 32000,
+        temperature: 0.1,
+      });
+      const fixed = stripCodeFences(content);
+      // Only accept a rewrite that actually parses; otherwise keep the original
+      // block so the next attempt re-tries from the real error.
+      if (validateBabelCode(fixed).ok) {
+        current = replaceBabelBlock(current, issue.block, fixed);
+        repairedAny = true;
+      }
+    }
+    if (!repairedAny) break;
+    current = autoRepairWebpageJsx(current);
+  }
+
+  const remaining = findWebpageJsxIssues(current);
+  if (remaining.length > 0) {
+    throw new Error(
+      `Interactive webpage JSX failed to parse after repair: ${remaining[0].error}`
+    );
+  }
+  return current;
 }
 
 export const VIRAL_STAGES: StageDef[] = [
@@ -269,7 +324,8 @@ export const VIRAL_STAGES: StageDef[] = [
         temperature: 0.8,
       });
 
-      const html = parseHtmlFromResponse(htmlRaw);
+      let html = parseHtmlFromResponse(htmlRaw);
+      html = await repairWebpageJsx(html, ctx);
       const slug = `${meta.slug || slugBase}-v${ctx.episode.id.slice(0, 6)}`
         .toLowerCase()
         .replace(/[^a-z0-9-]+/g, "-");

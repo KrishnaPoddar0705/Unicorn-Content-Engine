@@ -1,3 +1,4 @@
+import "server-only";
 import OpenAI from "openai";
 import type { LLMProvider, LLMCompleteParams, LLMCompleteResult } from "./provider";
 import { parseJSON } from "./parse-json";

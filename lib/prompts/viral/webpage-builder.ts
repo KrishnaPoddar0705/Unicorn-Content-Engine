@@ -126,5 +126,25 @@ Remember:
 - The simulation must let the reader recreate the core result by manipulating parameters.
 - Mobile-first.
 
+CRITICAL — the entire page is compiled by Babel in the browser. A SINGLE syntax error anywhere in the <script type="text/babel"> block makes the whole page render blank. Write valid JSX/JavaScript: no reserved words as identifiers, every JSX prop is a valid expression (style values are plain values like '#f59e0b', never arrow functions), all brackets/braces/parens balanced.
+
 Return ONLY the full HTML document inside a single \`\`\`html code fence. No JSON. No explanation outside the fence.`;
+}
+
+/**
+ * Repair prompt for the auto-fix loop: hand the model the babel script that
+ * failed to compile plus the parser error, and ask for a corrected script only.
+ * We splice the result back into the page, so it must NOT return HTML.
+ */
+export function buildWebpageRepairPrompt(brokenCode: string, parseError: string): string {
+  return `The JavaScript/JSX below is the contents of a <script type="text/babel"> block from an interactive React webpage. Babel fails to compile it, so the page renders blank. The parser error is:
+
+${parseError}
+
+Fix the syntax error(s) so the code compiles as valid JSX. Change as little as possible — preserve every component, all logic, text, styling, and behavior. Common culprits: a reserved word used as an identifier, a JSX attribute value that is not a valid expression (e.g. a style value written as an arrow function instead of a plain value), or an unbalanced bracket/brace/paren.
+
+Return ONLY the corrected JavaScript/JSX — the raw contents that go back inside the <script type="text/babel"> tag. No HTML, no <script> tags, no markdown code fences, no commentary.
+
+--- CODE ---
+${brokenCode}`;
 }

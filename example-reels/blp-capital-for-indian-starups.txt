@@ -1,0 +1,32 @@
+00:00:00
+The US runs on a deep tech flywheel. Institutional capital flows into frontier bets. Those bets generate outcomes. The, the outcomes recycle back into new capital and new talent, and the loop has been spinning since the 1970s.
+
+00:00:10
+India runs the opposite, a consumer flywheel, where domestic capital flows into mostly short-cycle domestic revenue businesses and deep tech sits at the margin. This is the dichotomy that needs to be addressed. The consequences of it are visible everywhere.
+
+00:00:22
+US AI products penetrate the Indian market with no friction. Kids are heavy users of every frontier AI product built in the US. A meaningful share of the engineers building those products are themselves Indians, either employed in the US or sitting directly in the GCCs in Bangalore and Hyderabad.
+
+00:00:35
+India provides the market and a large share of the talent, but India does not end up capturing the value. The reverse does not happen. An Indian-domiciled deep tech startup built by the same caliber of engineer rarely penetrates the US market at scale
+
+00:00:46
+and almost always ends up flipping its domicile to the US to raise comparable capital. So the team stays in India, but the company becomes American. The upside moves out. A US-domiciled startup with an Indian engineering team raises
+
+00:00:56
+ten to fifty times the capital that an Indian-domiciled startup with the same engineering team can raise for the same product capability with the same engineering cost. So the relevant question is: what the extra capital is actually buying? It buys runway long enough that the founder does not
+
+00:01:09
+have to accept unfavorable deals out of desperation. It buys leverage with enterprise buyers who know that the company can walk away from a bad contract. It removes the pressure to bend the product around a single early customer just to keep the lights on.
+
+00:01:20
+It funds the multi-year vesting deep enough to attract talent and retain top engineering talent against the competing US offers. A lot of this is not engineering cost. It is the cost of operating from a position of strength. Indian founders building the same product might not get any of this.
+
+00:01:33
+Domestic VC checks are smaller. Deep tech specifically falls outside the appetite of a lot of VCs because the cycles are long and the domestic revenue path is unclear. On the other hand, government grants are slow and hard to secure. The result is that an Indian deep tech founder is building the same product
+
+00:01:48
+as a US peer with a fraction of the runway, none of the leverage, and constant pressure to bend the product to whichever customer is paying this quarter. This is the dichotomy. The same capability, vastly different capital,
+
+00:01:58
+and the gap is not closing on its own. Over the next couple of reels, I will discuss the capital problem for deep tech in India in much detail. Stay tuned.

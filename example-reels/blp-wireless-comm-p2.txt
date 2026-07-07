@@ -1,0 +1,29 @@
+00:00:00
+We established in episode one that the data travels from your phone or any device to a cell tower or radio frequency, and, and it travels from that tower into the fiber backbone underground. That connection between the tower and the backbone is called backhaul, and it is quietly one of the most congested, most expensive,
+
+00:00:17
+and the most overlooked problems in wireless infrastructure. Here is the backhaul problem specifically. Every cell tower needs a high capacity link back to the fiber backbone to carry the traffic that it's collecting from thousands of devices.
+
+00:00:28
+Right now, that link is almost always microwave. Microwave is a point-to-point radio frequency connection between towers or between a tower and a fiber exchange point. Microwave works, but it still runs on licensed spectrum, which is basically the spectrum that has to be purchased, coordinated,
+
+00:00:42
+and managed. It has bandwidth limits, and as 5G traffic volume grows, the microwave backhaul link is increasingly the bottleneck. For example, you have a 5G tower on one end promising
+
+00:00:52
+gigabits of speed to every device connected to it and a microwave link on the other that cannot move that much data. The last mile problem is not just between your device and the tower, it is between the tower and everything behind it. But it gets harder in location where microwave using RF isn't viable.
+
+00:01:06
+A power plant in a remote area, a port, a defense forward operating base, a private network inside a factory. Laying fibers in these location means months of civil work and significant cost. But if we use microwave, then it has spectrum licensing and bandwidth constraints. There has historically been no clean third option.
+
+00:01:22
+Free space optics is that third option. It uses two optical transceivers, one on each end of the link, a rooftop to a tower, a building to a base station, tower to tower. They lock onto each other,
+
+00:01:32
+and the transmitter encodes the data onto a laser beam by modulating its intensity, similar to what we understood in Li-Fi, switching it on and off at extremely high speed. That laser travels through open air. At the other end, a photo detector receives it, reads the fluctuation,
+
+00:01:45
+and converts them back into data. No trench dug required, no spectrum licensed, and because laser beam is so narrow, it is extraordinarily difficult to intercept, which is why defense adopted this well before commercial market did. And that's the entire series for you.
+
+00:01:57
+RF spectrum, Li-Fi, free space optics, the full architecture from first principle. This week I'm also sitting down with the founder who is building free space optics infrastructure in India. I'm looking forward to that conversation, and I will keep you posted.

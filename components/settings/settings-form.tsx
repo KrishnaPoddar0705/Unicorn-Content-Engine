@@ -13,10 +13,13 @@ import {
 } from "@/components/episodes/script-preferences-fields";
 import type { ScriptPreferences } from "@/lib/agents/script-preferences";
 
+import { DEFAULT_GEMINI_MODEL } from "@/lib/llm/constants";
+
 interface Settings {
   llm_provider: string;
   openai_model: string;
   anthropic_model: string;
+  gemini_model: string;
   content_preferences?: Record<string, unknown>;
 }
 
@@ -24,9 +27,10 @@ export function SettingsForm({ initial }: { initial: Settings | null }) {
   const contentPrefs = (initial?.content_preferences || {}) as Record<string, unknown>;
   const initialScript = (contentPrefs.script_writing || {}) as Partial<ScriptPreferences>;
 
-  const [provider, setProvider] = useState(initial?.llm_provider || "anthropic");
+  const [provider, setProvider] = useState(initial?.llm_provider || "gemini");
   const [openaiModel, setOpenaiModel] = useState(initial?.openai_model || "gpt-4o");
   const [anthropicModel, setAnthropicModel] = useState(initial?.anthropic_model || "claude-opus-4-8");
+  const [geminiModel, setGeminiModel] = useState(initial?.gemini_model || DEFAULT_GEMINI_MODEL);
   const [scriptPrefs, setScriptPrefs] = useState(() => mergeEpisodeScriptPreferences(initialScript));
   const [testResult, setTestResult] = useState("");
   const [saving, setSaving] = useState(false);
@@ -42,6 +46,7 @@ export function SettingsForm({ initial }: { initial: Settings | null }) {
           llm_provider: provider,
           openai_model: openaiModel,
           anthropic_model: anthropicModel,
+          gemini_model: geminiModel,
           content_preferences: {
             ...contentPrefs,
             script_writing: scriptPrefs,
@@ -89,10 +94,18 @@ export function SettingsForm({ initial }: { initial: Settings | null }) {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="anthropic">Anthropic (default)</SelectItem>
+                <SelectItem value="gemini">Google Gemini (default)</SelectItem>
+                <SelectItem value="anthropic">Anthropic</SelectItem>
                 <SelectItem value="openai">OpenAI</SelectItem>
               </SelectContent>
             </Select>
+          </div>
+          <div>
+            <Label>Gemini Model</Label>
+            <Input value={geminiModel} onChange={(e) => setGeminiModel(e.target.value)} className="mt-2" />
+            <p className="mt-1 text-xs text-muted-foreground">
+              Free tier: gemini-2.5-flash. Newer: gemini-3-flash-preview
+            </p>
           </div>
           <div>
             <Label>OpenAI Model</Label>

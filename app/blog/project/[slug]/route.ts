@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { isSupabaseConfigured } from "@/lib/supabase/server";
+import { autoRepairWebpageJsx } from "@/lib/agents/webpage-jsx";
 import { getBlogPostBySlug, getBlogPosts } from "@/lib/db/blog-queries";
 import {
   injectBacklinksFooter,
@@ -28,7 +29,7 @@ export async function GET(
     .slice(0, 4)
     .map((p) => ({ title: p.title, blogSlug: p.blog_slug }));
 
-  let html = post.html_content;
+  let html = autoRepairWebpageJsx(post.html_content);
   html = injectSeoHead(html, {
     title: post.title,
     description: post.description.slice(0, 300),

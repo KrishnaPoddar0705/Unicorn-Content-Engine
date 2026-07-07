@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${dmSans.variable} ${fraunces.variable} h-full`}>
-      <body className="min-h-full antialiased">
+      <body className="min-h-full antialiased" suppressHydrationWarning>
         <AppShell>{children}</AppShell>
       </body>
     </html>

@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import { VIRAL_DOMAINS } from "@/lib/viral/domains";
 import { ReferenceImageUploader } from "./reference-image-uploader";
 import type {
   ContentSeriesTemplate,
@@ -25,17 +26,7 @@ const INPUT_MODES: { value: ViralInputMode; label: string; hint: string }[] = [
   { value: "reference_visual", label: "Visual", hint: "Style-first episode" },
 ];
 
-const DOMAINS = [
-  "economics",
-  "philosophy",
-  "ai",
-  "logic",
-  "mathematics",
-  "science",
-  "business",
-  "space",
-  "markets",
-];
+const DOMAINS = VIRAL_DOMAINS;
 
 const SELECTS: {
   key: "target_audience" | "depth" | "output_format" | "tone" | "cta_goal" | "platform";
@@ -112,16 +103,24 @@ export function CreateViralForm({
   templates,
   styleProfiles: initialProfiles,
   referenceImages: initialImages,
+  initialMode,
+  initialTitle,
+  initialDomain,
+  initialRawInput,
 }: {
   templates: ContentSeriesTemplate[];
   styleProfiles: StyleProfile[];
   referenceImages: ReferenceImage[];
+  initialMode?: ViralInputMode;
+  initialTitle?: string;
+  initialDomain?: string;
+  initialRawInput?: string;
 }) {
   const router = useRouter();
-  const [mode, setMode] = useState<ViralInputMode>("idea");
-  const [title, setTitle] = useState("");
-  const [domain, setDomain] = useState<string | null>(null);
-  const [rawInput, setRawInput] = useState("");
+  const [mode, setMode] = useState<ViralInputMode>(initialMode ?? "idea");
+  const [title, setTitle] = useState(initialTitle ?? "");
+  const [domain, setDomain] = useState<string | null>(initialDomain ?? null);
+  const [rawInput, setRawInput] = useState(initialRawInput ?? "");
   const [paperText, setPaperText] = useState("");
   const [fields, setFields] = useState<Record<string, string>>({
     target_audience: "general_curious_adult",

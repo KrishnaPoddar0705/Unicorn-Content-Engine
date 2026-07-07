@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Plus, BarChart3 } from "lucide-react";
+import { Plus, BarChart3, Lightbulb } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -24,6 +24,12 @@ export default async function ViralLabPage() {
         description="The epistemic entertainment engine — research-grade content engineered for curiosity."
         action={
           <div className="flex gap-2">
+            <Link href="/viral/ideas">
+              <Button variant="outline">
+                <Lightbulb className="mr-2 h-4 w-4" />
+                Ideas
+              </Button>
+            </Link>
             <Link href="/viral/insights">
               <Button variant="outline">
                 <BarChart3 className="mr-2 h-4 w-4" />

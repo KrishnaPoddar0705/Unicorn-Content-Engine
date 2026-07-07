@@ -75,10 +75,15 @@ export function buildSharedContext(params: {
   seriesSnippet?: string;
   memorySummary?: string;
   styleSnippet?: string;
+  /** The Unicorn Labs house DNA — injected only for the "labs" vertical. */
+  brandSnippet?: string;
+  /** Per-part series continuity (recap prior parts, tease next) — labs series only. */
+  seriesContext?: string;
 }): string {
   const { episode } = params;
   const sections = [
     VIRAL_QUALITY_CONSTRAINTS,
+    params.brandSnippet,
     [
       episode.domain ? `Domain: ${episode.domain}.` : "",
       note(AUDIENCE_NOTES, episode.target_audience),
@@ -91,6 +96,7 @@ export function buildSharedContext(params: {
       .filter(Boolean)
       .join("\n"),
     params.seriesSnippet,
+    params.seriesContext,
     params.styleSnippet,
     params.memorySummary,
   ];
